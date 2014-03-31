@@ -1,4 +1,4 @@
-clebsh-gordan coeffecients
+clebsh-gordan coefficients
 ==========================
 
 * generates clebsh-gordan coeffs
