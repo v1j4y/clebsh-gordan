@@ -1,0 +1,7 @@
+IRPF90_man/
+IRPF90_temp/
+Makefile
+input
+irpf90.make
+irpf90_entities
+clebsh
