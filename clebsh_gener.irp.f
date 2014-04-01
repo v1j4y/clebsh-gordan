@@ -155,9 +155,15 @@ subroutine clebsh_gener(J1,J2,rank)
 
         enddo
     enddo
+    
+    write(6,*)C
+    do i=1,C
+        write(6,11)MATM1(i),MATM2(i)
+    enddo
+    write(6,*)
+    write(6,*)
+    call printmat(clebsh_mat,MATJ,C)
 
-    call printmat(clebsh_mat,C)
-
-11 FORMAT((2F11.5,'  '),$)
+11 FORMAT(('  ',2F5.1,' '),$)
 12 FORMAT((F11.5,'  '),$)
 end

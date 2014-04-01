@@ -5,3 +5,4 @@ input
 irpf90.make
 irpf90_entities
 clebsh
+test*
