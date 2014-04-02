@@ -125,6 +125,8 @@ subroutine clebsh_gener(J1,J2,rank)
             tmp=dexp(tmp)
             tmp*=(2.0d0*J+1.0d0)
 
+            P1=tmp
+
             S1=0.0d0
             do k=-2*int(JT),int(JT)*2
                 r=float(k)
