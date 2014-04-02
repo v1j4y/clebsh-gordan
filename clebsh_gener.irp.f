@@ -131,10 +131,21 @@ subroutine clebsh_gener(J1,J2,rank)
                 delta=0.0d0
             endif
 
-            P1=((2.0d0*J+1.0d0)*fact(J1+J2-J)*fact(J1-M1)                      &
-               *fact(J2-M2)*fact(J+M)*fact(J-M))/                              &
-               (fact(J1+J2+J+1.0d0)*fact(J+J1-J2)*fact(J+J2-J1)                &
-               *fact(J1+M1)*fact(J2+M2))
+!           P1=((2.0d0*J+1.0d0)*fact(J1+J2-J)*fact(J1-M1)                      &
+!              *fact(J2-M2)*fact(J+M)*fact(J-M))/                              &
+!              (fact(J1+J2+J+1.0d0)*fact(J+J1-J2)*fact(J+J2-J1)                &
+!              *fact(J1+M1)*fact(J2+M2))
+
+            tmp=lgamma(J1+J2-J+1.0d0)+lgamma(J1-M1+1.0d0)                      &
+                +lgamma(J2-M2+1.0d0)+lgamma(J+M+1.0d0)                         &
+                +lgamma(J-M+1.0d0)-lgamma(J1+J2+J+1.0d0+1.0d0)                 &
+                -lgamma(J+J1-J2+1.0d0)-lgamma(J+J2-J1+1.0d0)                   &
+                -lgamma(J1+M1+1.0d0)-lgamma(J2+M2+1.0d0)
+
+            tmp=dexp(tmp)
+            tmp*=(2.0d0*J+1.0d0)
+
+!           write(22,*)tmp-P1
 
             S1=0.0d0
             do k=-2*int(JT),int(JT)*2
@@ -155,7 +166,7 @@ subroutine clebsh_gener(J1,J2,rank)
 
         enddo
     enddo
-    
+
     write(6,*)C
     do i=1,C
         write(6,11)MATM1(i),MATM2(i)
