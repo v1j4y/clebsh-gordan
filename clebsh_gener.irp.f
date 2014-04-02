@@ -20,7 +20,7 @@ subroutine clebsh_gener(J1,J2,rank)
     real(8),allocatable::MATM1(:),MATM2(:),MATM(:),MATJ(:)
     integer::i,l,k,C1,C2,C,rank,count
     logical::HalfInt1,HalfInt2
-    double precision::infinity
+    double precision::infinity,lgamma
     
     text="ms1 and ms2"
 
@@ -138,7 +138,7 @@ subroutine clebsh_gener(J1,J2,rank)
                     -lgamma(J-M-r+1.0d0)-lgamma(J1-M1-r+1.0d0)                 &
                     -lgamma(J2-J+M1+r+1.0d0)
                 if(tmp.le.infinity .and. tmp.ge.(-1.0d0*infinity)) then
-                    tmp=exp(tmp)
+                    tmp=dexp(tmp)
                     tmp*=((-1)**(J1-M1+r))
                     S1+=tmp
                 endif
