@@ -128,10 +128,17 @@ subroutine clebsh_gener(J1,J2,rank)
             P1=tmp
 
             S1=0.0d0
-            do k=-2*int(JT),int(JT)*2
+            do k=0,int(JT)*2
                 r=float(k)
 !               tmp=(((-1)**(J1-M1+r))*fact(J1+M1+r)*fact(J2+J-M1-r))/         &
 !                   (fact(r)*fact(J-M-r)*fact(J1-M1-r)*fact(J2-J+M1+r))
+
+                if( sign(1.0d0,J1+M1+r)   .lt. 0.0d0)CYCLE
+                if( sign(1.0d0,r)         .lt. 0.0d0)CYCLE
+                if( sign(1.0d0,J2+J-M1-r) .lt. 0.0d0)CYCLE
+                if( sign(1.0d0,J-M-r)     .lt. 0.0d0)CYCLE
+                if( sign(1.0d0,J1-M1-r)   .lt. 0.0d0)CYCLE
+                if( sign(1.0d0,J2-J+M1+r) .lt. 0.0d0)CYCLE
 
                 tmp=lgamma(J1+M1+r+1.0d0)                                      &
                     +lgamma(J2+J-M1-r+1.0d0)-lgamma(r+1.0d0)                   &
